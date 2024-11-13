@@ -1,0 +1,33 @@
+.admin-back{
+ background-image:url("https://img.freepik.com/free-photo/office-supplies-keyboard-coffee-cup-card-eyeglasses-candle-headphone-blue-background_23-2148041892.jpg?ga=GA1.1.1910768974.1722428793&semt=ais_hybrid");
+background-size:cover;
+height:100vh;
+}
+.admin-login{
+background-image:url("https://img.freepik.com/free-photo/blue-user-icon-symbol-website-admin-social-login-element-concept-white-background-3d-rendering_56104-1217.jpg?ga=GA1.1.1910768974.1722428793&semt=ais_hybrid");
+background-size:cover;
+width:27vw;
+padding:20px;
+
+}
+.admin-form{
+text-align:center;
+padding:8px;
+margin:480px;
+margin-top:200px;
+}
+.admin-heading{
+    color:orange;
+    font-family:"Caveat";
+    font-size:45px;
+    font-style:italic;
+    text-align:center;
+}
+.admin-button{
+    background-color:lightblue;
+    color:white;
+    width:120px;
+    height:20px;
+    border-width:0px;
+    border-radius:10px;
+}

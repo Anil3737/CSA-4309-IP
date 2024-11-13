@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+.payment-container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pay-btn:hover {
+    background-color: #218838;
+}
+
+#payment-status {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1em;
+    color: #e74c3c;
+}
+
+</style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Secure Payment</h1>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="cardholder-name">Cardholder Name</label>
+                <input type="text" id="cardholder-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" placeholder="$0.00" required>
+            </div>
+            <button type="submit" class="pay-btn">Pay Now</button>
+        </form>
+        <div id="payment-status"></div>
+    </div>
+
+    <script>
+document.getElementById("payment-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Collect form data
+    const name = document.getElementById("cardholder-name").value.trim();
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const expiryDate = document.getElementById("expiry-date").value.trim();
+    const cvv = document.getElementById("cvv").value.trim();
+    const amount = document.getElementById("amount").value.trim();
+    const paymentStatus = document.getElementById("payment-status");
+
+    // Validate card number (16-digit)
+    const cardNumberRegex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+    if (!cardNumberRegex.test(cardNumber)) {
+        paymentStatus.textContent = "Invalid card number. Use format: 1234 5678 9012 3456";
+        return;
+    }
+
+    // Validate expiry date (MM/YY)
+    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    if (!expiryDateRegex.test(expiryDate)) {
+        paymentStatus.textContent = "Invalid expiry date. Use format: MM/YY";
+        return;
+    }
+
+    // Validate CVV (3-digit)
+    const cvvRegex = /^\d{3}$/;
+    if (!cvvRegex.test(cvv)) {
+        paymentStatus.textContent = "Invalid CVV. It must be a 3-digit number";
+        return;
+    }
+
+    // Validate amount
+    const amountRegex = /^\$\d+(\.\d{2})?$/;
+    if (!amountRegex.test(amount)) {
+        paymentStatus.textContent = "Invalid amount. Use format: $0.00";
+        return;
+    }
+
+    // Simulate payment processing (replace with actual payment gateway integration as needed)
+    paymentStatus.style.color = "#28a745";
+    paymentStatus.textContent = "Payment successful! Thank you for your purchase.";
+});
+
+</script>
+</body>
+</html>

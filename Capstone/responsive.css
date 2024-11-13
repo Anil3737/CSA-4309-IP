@@ -1,0 +1,285 @@
+.image{
+ width:50px;
+ height:50px;
+ border-radius:50%;
+}
+#navitem1{
+  color:#342f4e;
+  font-family:"Roboto";
+  }
+#navitem2{
+  color:#342f4e;
+  font-family:"Roboto";
+  }
+#navitem3{
+  color:#342f4e;
+  font-family:"Roboto";
+  }
+#navitem4{
+  color:#342f4e;
+  font-family:"Roboto";
+  }
+.banner-bg-container{
+  background-image:url("https://img.freepik.com/free-photo/blurred-restaurant-with-many-lights_1203-627.jpg?t=st=1722432730~exp=1722436330~hmac=ada0819a8414c7aba81b6a56638ea113e34a440d879919120a0ebe57b792e89b&w=900");
+  background-size:cover;
+  height:100vh;
+}
+.banner-heading{
+ color:white;
+ font-family:"Roboto";
+ font-size:45px;
+ font-style:italic;
+ }
+.banner-caption{
+ color:white;
+ font-family:"Roboto";
+ font-size:30px;
+ font-style:italic;
+}
+.button-customize{
+ background-color:#d0b200;
+ width:135px;
+ height:50px;
+ border-width:0;
+ border-radius:8px;
+ margin-right:10px;
+ color:white;
+}
+
+.button-outerline{
+background-color:transparent;
+ width:135px;
+ height:50px;
+ border-width:2px;
+ border-radius:8px;
+ border-style:solid;
+border-color:#d0b200;
+color:#d0b200;
+}
+.wcu_section{
+background-color:#E2EAF4;
+}
+.wcu_head{
+ color:#47474D;
+ font-family:"Roboto";
+ font-weight:600;
+ font-size:45px;
+}
+.wcu_discription{
+ color:#BAB6C3;
+ font-family:"Roboto";
+ font-size:22px;
+ font-weight:700;
+}
+.wcu_image{
+  width:90px;
+  height:87px;
+}
+.wcu_card1{
+  background-color:white;
+  text-align:center;
+  padding:20px;
+  border-style:solid;
+  border-width:1px;
+  border-color:#F28687;
+  border-radius:16px;
+}
+.wuc_card_head{
+  color:#47474D;
+ font-family:"Roboto";
+ font-weight:400;
+ font-size:23px;
+
+}
+.wuc_discription{
+  color:#8C8A91;
+  font-family:"Roboto";
+  font-size:20px;
+  font-weight:200;
+}
+.offers{
+  color:black;
+  font-weight:700;
+  font-family:"Roboto";
+}
+
+
+.explore-menu-section{
+    background-color:lightyellow;
+}
+.explore-image{
+    border-radius:16px;
+}
+.explore-heading{
+    color:#183b56;
+    font-family:"Roboto";
+    font-size:45px;
+    font-weight:700;
+}
+.explore-head-con{
+      color:#183b56;
+    font-family:"Roboto";
+    font-size:23px;
+    font-weight:700;
+    
+}
+.explore-button{
+    color:#d0b200;
+    font-family:"Roboto";
+    font-weight:400;
+    font-size:14px;
+   
+}
+.explore-card{
+    background-color:white;
+    border-radius:16px;
+}
+.hpt-sec-back{
+ background-color:lightpink;
+}
+.hpt-sec-imag{
+width:75%;
+}
+.hpt-sec-heading{
+color:#2A4358;
+font-family:"ROboto";
+font-size:45px;
+font-weight:700;
+}
+.hpt-sec-para{
+color:#768089;
+font-size:20px;
+font-weight:400;
+font-family:"Roboto";
+}
+.hpt-sec-button{
+background-image:linear-gradient(#d0b200,#a58d00);
+width:135px;
+height:30px;
+border-radius:16px;
+border-width:0;
+border-color:lightred;
+}
+.hpt-sec2-back{
+background-color:white;
+}
+.hpt-sec1-image{
+width:75%;
+}
+.hpt-sec1-head
+{
+color:#06034A;
+font-family:"Roboto";
+font-size:45px;
+font-weight:600;
+}
+.hpt-sec1-para{
+color:#768089;
+font-size:20px;
+font-weight:400;
+font-family:"Roboto";
+}
+.hpt-sec1-button{
+border-width:0;
+border-radius:16px;
+width:135px;
+height:30px;
+color:white;
+font-weight:400;
+decoration:none;
+}
+
+.pay-image{
+width:90px;
+height:90px;
+margin-right:10px;
+}
+.gift-sec-back{
+background-image:radial-gradient(#fff8bd,#fae38c);
+}
+.gift-image{
+width:300px;
+}
+.gift-button{
+background-image:linear-gradient(#d0b200,#a58d00);
+width:135px;
+height:40px;
+border-radius:16px;
+border-width:0;
+}
+
+
+.follow-us-sec {
+background-color:#CADCDD;
+height:50vh;
+}
+.followus-sec-head{
+color:#5D5D61;
+font-family:"Roboto";
+font-size:45px;
+font-weight:600;
+}
+.followus-icon{
+color:#1DA1F2;
+font-size:35px;
+}
+.follow-back-sec-twitter{
+background-color:white;
+width:60px;
+height:70px;
+padding-right:14px;
+padding-left:16px;
+padding-top:22px;
+padding-bottom:22px;
+border-radius:50%;
+}
+.follow-back-sec-instagram{
+background-color:#E9BCBC;
+width:60px;
+height:70px;
+padding-right:14px;
+padding-left:16px;
+padding-top:22px;
+padding-bottom:22px;
+border-radius:50%;
+
+}
+.follow-back-sec-link{
+background-color:#d0b200;
+width:60px;
+height:70px;
+padding-right:14px;
+padding-left:16px;
+padding-top:22px;
+padding-bottom:22px;
+border-radius:50%;
+}
+.followus-icon1{
+color:#E1306c;
+font-size:35px;
+}
+.followus-icon2{
+color:#0E76A8;
+font-size:35px;
+}
+.follow-sec-2{
+background-color:black;
+height:50vh;
+}
+.follow-us-image {
+width:100px;
+height:100px;
+}
+.followus-heading{
+color:#B5ABAB;
+font-size:30px;
+font-family:"Roboto";
+font-weight:400;
+}
+.followus-para{
+color:#B5ABAB;
+font=weight:300;
+font-size:20px;
+font-family:"Roboto";
+}
+

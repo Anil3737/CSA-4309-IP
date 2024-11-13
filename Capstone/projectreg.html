@@ -1,0 +1,85 @@
+<html>
+<head>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="registerback justify-content-center">
+    <h1 class="reghead">Registration form</h1>
+<form action="register.php" method="post" onsubmit="return validate_form()">
+  <div class="formstyle">
+    <label for="ame">username:</label> 
+    <input type="text"  name="f_name" id="ame" required>
+    <span id="name" class="error"></span>
+<br>
+<br>
+<label for="reg">uniq_id:</label> 
+<input type="text" name="reg_no" id="reg" required><br>
+create one unique id for you should be numeric<br>
+<label for="mail">email:</label> 
+<input type="email"  id="mail" name="email" required>
+<span id="mail1" class="error"></span>
+<br>
+<br>
+<label for="pass">password:</label> 
+<input type="password"  name="pws" id="pass">
+<span id="pass1" class="error"></span>
+<br>
+<br>
+<label for="ph">phone:</label> 
+<input type="text"  id="ph" name="phone">
+<br>
+<br>
+<label for="con">state:</label>  
+<select name="country" id="con">
+<option value="AP">Andra Pradesh</option>
+<option value="TN">Tamil Nadu</option>
+<option value="Karnakata">Karnataka</option>
+<option value="kerala">Kerala</option>
+</select>
+<br>
+<br>
+<center>
+<button>submit</button>
+</center>
+</div>
+</form>
+</div>
+<script>
+function validate_form()
+{
+alert("welcome");
+const fnexpre=/^[A-Z][a-zA-Z]*$/;
+var a=document.getElementById("ame");
+var status=true;
+if(!fnexpre.test(a.value)){
+ document.getElementById("name").innerHTML="invalid name start with uppercase";
+a.value="";
+status=false;
+} else {
+ document.getElementById("name").innerHTML="";
+}
+alert("hii");
+const emexpre=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+var b=document.getElementById("mail");
+if(!emexpre.test(b.value)){
+document.getElementById("mail1").innerHTML="invalid email";
+b.value="";
+status=false;
+} else{
+document.getElementById("mail1").innerHTML="";
+}
+alert("hello")
+const pexpre=/^[0-9]*$/;
+var c=document.getElementById("pass");
+if(!pexpre.test(c.value)){
+document.getElementById("pass1").innerHTML="invalid password";
+c.value="";
+status=false;
+} else {
+document.getElementById("pass1").innerHTML="";
+}
+return status;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non-Veg Starters</title>
+  <style type="text/css">
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #ff4d4d;
+  color: white;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.menu-item {
+  width: 300px;
+  background-color: white;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.menu-item:hover {
+  transform: translateY(-10px);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.menu-details {
+  padding: 15px;
+  text-align: center;
+}
+
+.menu-details h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.menu-details p {
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.price {
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+.buy-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+  background-color: #e60000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-item {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Delicious Non-Veg Starters</h1>
+  </header>
+  
+  <section class="menu">
+    <div class="menu-item">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.I8b9lb4qxYZuLx3Oy3eMPgHaLH&pid=Api&P=0&h=180" alt="Chicken Tikka">
+      <div class="menu-details">
+        <h2>Chicken Tikka</h2>
+        <p>Juicy marinated chicken pieces grilled to perfection.</p>
+        <p class="price">₹250</p>
+        <button class="buy-button">Buy</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="https://spoonsofflavor.com/wp-content/uploads/2019/11/Bombay-Duck-Fish-Fingers.jpg" alt="Fish Fingers">
+      <div class="menu-details">
+        <h2>Fish Fingers</h2>
+        <p>Crunchy fish fingers served with tangy tartar sauce.</p>
+        <p class="price">₹200</p>
+        <button class="buy-button">Buy</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="https://thespiceadventuress.com/wp-content/uploads/2023/03/kaju-jhinga-square-1024x1024.jpg" alt="Prawn Fry">
+      <div class="menu-details">
+        <h2>Prawn Fry</h2>
+        <p>Spicy, crispy prawns fried to golden perfection.</p>
+        <p class="price">₹300</p>
+        <button class="buy-button">Buy</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="https://recipes.timesofindia.com/photo/58360750.cms?imgsize=71920">
+      <div class="menu-details">
+        <h2>Mutton Seekh Kebab</h2>
+        <p>Succulent minced mutton kebabs with spices.</p>
+        <p class="price">₹350</p>
+        <button class="buy-button">Buy</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="https://tse1.mm.bing.net/th?id=OIP.l6qBpt6kTxdcjaMVNQGNXAHaLG&pid=Api&P=0&h=180" alt="BBQ Chicken Wings">
+      <div class="menu-details">
+        <h2>BBQ Chicken Wings</h2>
+        <p>Finger-licking BBQ chicken wings with a smoky flavor.</p>
+        <p class="price">₹280</p>
+        <button class="buy-button">Buy</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
