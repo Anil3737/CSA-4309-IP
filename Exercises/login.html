@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library System</title>
+    <style>
+        /* Basic styling for layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        /* Modal styling for popups */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .modal-content h2 {
+            text-align: center;
+        }
+        .modal-content label,
+        .modal-content input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Library System</h1>
+</header>
+
+<nav>
+    <a href="#" onclick="showLoginOptions()">Login</a>
+    <a href="#" onclick="showRegistration()">Registration</a>
+</nav>
+
+<!-- Login Options Modal -->
+<div id="loginOptionsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('loginOptionsModal')">&times;</span>
+        <h2>Select Login Type</h2>
+        <button onclick="showUserLogin()">User Login</button>
+        <button onclick="showAdminLogin()">Admin Login</button>
+    </div>
+</div>
+
+<!-- User Login Modal -->
+<div id="userLoginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('userLoginModal')">&times;</span>
+        <h2>User Login</h2>
+        <form>
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" required>
+            <label for="userPassword">Password:</label>
+            <input type="password" id="userPassword" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('adminLoginModal')">&times;</span>
+        <h2>Admin Login</h2>
+        <form>
+            <label for="adminEmail">Email:</label>
+            <input type="email" id="adminEmail" required>
+            <label for="adminPassword">Password:</label>
+            <input type="password" id="adminPassword" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Registration Modal -->
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('registrationModal')">&times;</span>
+        <h2>User Registration</h2>
+        <form>
+            <label for="regName">Name:</label>
+            <input type="text" id="regName" required>
+            <label for="regEmail">Email:</label>
+            <input type="email" id="regEmail" required>
+            <label for="regPassword">Password:</label>
+            <input type="password" id="regPassword" required>
+            <label for="regConfirmPassword">Confirm Password:</label>
+            <input type="password" id="regConfirmPassword" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Function to show the login options modal
+    function showLoginOptions() {
+        document.getElementById('loginOptionsModal').style.display = 'block';
+    }
+
+    // Function to show user login modal
+    function showUserLogin() {
+        closeModal('loginOptionsModal');
+        document.getElementById('userLoginModal').style.display = 'block';
+    }
+
+    // Function to show admin login modal
+    function showAdminLogin() {
+        closeModal('loginOptionsModal');
+        document.getElementById('adminLoginModal').style.display = 'block';
+    }
+
+    // Function to show registration modal
+    function showRegistration() {
+        document.getElementById('registrationModal').style.display = 'block';
+    }
+
+    // Function to close any open modal
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Close modals when clicking outside of them
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

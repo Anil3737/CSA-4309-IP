@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Location Weather</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .weather-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .weather-container h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+        .weather-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #00796b;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .weather-container button:hover {
+            background-color: #004d40;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-info p {
+            font-size: 1.1em;
+            color: #333;
+        }
+        .error {
+            color: red;
+            font-size: 1em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="weather-container">
+    <h2>Current Location Weather</h2>
+    <button onclick="getCurrentLocationWeather()">Get Current Weather</button>
+    
+    <div class="weather-info" id="weatherInfo"></div>
+    <div class="error" id="error"></div>
+</div>
+
+<script>
+    async function getCurrentLocationWeather() {
+        const weatherInfo = document.getElementById('weatherInfo');
+        const error = document.getElementById('error');
+        weatherInfo.innerHTML = '';
+        error.textContent = '';
+
+        if (!navigator.geolocation) {
+            error.textContent = 'Geolocation is not supported by your browser';
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const apiKey = 'YOUR_API_KEY';  // Replace with your OpenWeather API key
+
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+
+                if (!response.ok) {
+                    throw new Error('Unable to fetch weather data');
+                }
+
+                const data = await response.json();
+                const { name } = data;
+                const temperature = data.main.temp;
+                const weatherDescription = data.weather[0].description;
+                const humidity = data.main.humidity;
+                const windSpeed = data.wind.speed;
+
+                weatherInfo.innerHTML = `
+                    <p><strong>City:</strong> ${name}</p>
+                    <p><strong>Temperature:</strong> ${temperature} °C</p>
+                    <p><strong>Weather:</strong> ${weatherDescription}</p>
+                    <p><strong>Humidity:</strong> ${humidity}%</p>
+                    <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p>
+                `;
+            } catch (err) {
+                error.textContent = err.message;
+            }
+        }, () => {
+            error.textContent = 'Unable to retrieve your location';
+        });
+    }
+</script>
+
+</body>
+</html>

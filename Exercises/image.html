@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show/Hide Image</title>
+    <style>
+        #imageContainer img {
+            width: 300px; /* Set default width for the image */
+        }
+        #imageContainer.hide img {
+            visibility: hidden; /* Hide the image but maintain its width */
+        }
+    </style>
+</head>
+<body>
+    <h2>Image Show/Hide Example</h2>
+    <div id="imageContainer">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLKPoWMBDRWhEGZUSrkWB2OKPvXgdQs-NSA&s" alt="Placeholder Image">
+    </div>
+    
+    <button onclick="showImage()">Show</button>
+    <button onclick="hideImage()">Hide</button>
+
+    <script>
+        const imageContainer = document.getElementById('imageContainer');
+
+        function showImage() {
+            imageContainer.classList.remove('hide'); // Remove 'hide' class to show image
+        }
+
+        function hideImage() {
+            imageContainer.classList.add('hide'); // Add 'hide' class to hide image
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        .menu-section {
+            margin: 20px auto;
+            width: 80%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Page Title -->
+    <h1>Welcome to Our Restaurant</h1>
+
+    <!-- Menu Categories -->
+    <div class="menu-section" id="menu">
+        <h2>Food Categories</h2>
+        <ul>
+            <li><a href="#appetizers">Appetizers</a></li>
+            <li><a href="#mains">Mains</a></li>
+            <li><a href="#desserts">Desserts</a></li>
+        </ul>
+
+        <!-- Appetizers Section -->
+        <h3 id="appetizers">Appetizers</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            <tr>
+                <td>Spring Rolls</td>
+                <td>$5.99</td>
+                <td><img src="spring_rolls.jpg" alt="Spring Rolls"></td>
+            </tr>
+            <tr>
+                <td>Garlic Bread</td>
+                <td>$3.99</td>
+                <td><img src="garlic_bread.jpg" alt="Garlic Bread"></td>
+            </tr>
+        </table>
+
+        <!-- Mains Section -->
+        <h3 id="mains">Mains</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            <tr>
+                <td>Grilled Chicken</td>
+                <td>$12.99</td>
+                <td><img src="grilled_chicken.jpg" alt="Grilled Chicken"></td>
+            </tr>
+            <tr>
+                <td>Pasta Alfredo</td>
+                <td>$10.99</td>
+                <td><img src="pasta_alfredo.jpg" alt="Pasta Alfredo"></td>
+            </tr>
+        </table>
+
+        <!-- Desserts Section -->
+        <h3 id="desserts">Desserts</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            <tr>
+                <td>Chocolate Cake</td>
+                <td>$6.99</td>
+                <td><img src="chocolate_cake.jpg" alt="Chocolate Cake"></td>
+            </tr>
+            <tr>
+                <td>Ice Cream</td>
+                <td>$4.99</td>
+                <td><img src="ice_cream.jpg" alt="Ice Cream"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@restaurant.com | Phone: (123) 456-7890</p>
+    </footer>
+
+</body>
+</html>

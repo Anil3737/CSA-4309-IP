@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Input Validation</h1>
+    <form id="validationForm">
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" placeholder="Enter your phone number"><br>
+        <span id="phoneError" class="error"></span><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" placeholder="Enter your email"><br>
+        <span id="emailError" class="error"></span><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Enter your password"><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="success"></div>
+
+    <script>
+        document.getElementById('validationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            clearErrors();
+
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            let valid = true;
+
+            // Phone number validation (10 digits)
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                document.getElementById('phoneError').innerText = 'Invalid phone number. Must be 10 digits.';
+                valid = false;
+            }
+
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').innerText = 'Invalid email address.';
+                valid = false;
+            }
+
+            // Password validation (minimum 6 characters, at least one letter and one number)
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 6 characters, include at least one letter and one number.';
+                valid = false;
+            }
+
+            if (valid) {
+                document.getElementById('result').innerText = 'All inputs are valid!';
+            }
+        });
+
+        function clearErrors() {
+            document.getElementById('phoneError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+            document.getElementById('result').innerText = '';
+        }
+    </script>
+</body>
+</html>
