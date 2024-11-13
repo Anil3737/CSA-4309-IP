@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: azure;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 5px;
+            border: 2px 5px solid rgba(6, 6, 245, 0.738);
+            animation: neonGlow 1s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            from {
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0, 0.2);
+            }
+
+            to {
+                box-shadow: 0px 0px 20px #3504f9,
+                    0px 0px 30px #492ec59d,
+                    0px 0px 40px #946cf9;
+            }
+
+
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        button {
+            background-color: rgba(36, 36, 217, 0.738);
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 10px;
+            border: none;
+
+            /* display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; */
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <h1>Registration Form</h1><br>
+        <div class="container">
+            <label for="firstName">First Name : </label>
+            <input type="text" id="firstName" name="firstName" required><br><br>
+            <label for="lastName">Last Name : </label>
+            <input type="text" id="lastName" name="lastName" required><br><br>
+            <label for="userName"> User Name :</label>
+            <input type="text" id="userName" name="userName" required><br><br>
+            <label for="password">Password : </label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
+            <label for="repassword">Retype Password : </label>
+            <input type="password" id="repassword" name="repassword" placeholder="Enter again" required><br><br>
+            <label for="email">Email : </label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required><br><br>
+            <label for="phone">Phone No : </label>
+            <input type="text" id="phone" name="phone" min="10" maxlength="10"><br><br>
+            <label for="Gender">Gender : </label>
+            <input type="radio" id="Gender" name="Gender" value="Male">Male
+            <input type="radio" name="Gender" id="Gender" value="Female">Female <br><br>
+            <label for="city"> City : </label>
+            <select id="city">
+                <option>Chennai</option>
+                <option>Hyderabad</option>
+                <option>Mumbai</option>
+                <option>Andhra Pradesh</option>
+                <option>Benglore</option>
+                <option>Delhi</option>
+                <option>Pune</option>
+            </select><br><br>
+            <button>Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>

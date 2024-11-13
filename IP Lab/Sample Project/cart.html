@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Bakery Delights</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #f8b400;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navbar {
+            margin-top: 0.5rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        .navbar a.active {
+            border-bottom: 2px solid #fff;
+            padding-bottom: 0.5rem;
+        }
+
+        .btn {
+            background-color: #f8b400;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e6a500;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        /* Cart Section */
+        .cart {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .cart-table th {
+            background-color: #f8b400;
+            color: white;
+        }
+
+        .cart-table img {
+            width: 100px;
+            height: auto;
+        }
+
+        .cart-table input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .cart-summary {
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .cart-summary p {
+            margin: 0.5rem 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .quantity-controls button {
+            background-color: #f8b400;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .quantity-controls button:hover {
+            background-color: #e6a500;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="Register.html" class="logo">Bakery Delights</a>
+        <nav class="navbar">
+            <a href="Register.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html" class="active btn">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="cart">
+        <h1>Your Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <div class="cart-summary">
+            <p>Total Items: <span id="total-items">0</span></p>
+            <p>Total Price: $<span id="total-price">0.00</span></p>
+            <button class="btn" id="clear-cart-btn">Clear Cart</button>
+            <button class="btn" id="checkout-btn">Checkout</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Bakery Delights. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-youtube"></a>
+        </div>
+    </footer>
+
+    <script>
+        function updateCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('cart-items');
+            const totalItemsElem = document.getElementById('total-items');
+            const totalPriceElem = document.getElementById('total-price');
+            
+            cartItems.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<tr><td colspan="7">Your cart is empty</td></tr>';
+            } else {
+                cart.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        
+                        <td>${item.name}</td>
+                        <td>${item.size}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>
+                            <div class="quantity-controls">
+                                <button onclick="changeQuantity('${item.name}', '${item.size}', -1)">-</button>
+                                <input type="number" value="${item.quantity}" min="1" readonly>
+                                <button onclick="changeQuantity('${item.name}', '${item.size}', 1)">+</button>
+                            </div>
+                        </td>
+                        <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                        <td><button class="btn" onclick="removeItem('${item.name}', '${item.size}')">Remove</button></td>
+                    `;
+                    
+                    cartItems.appendChild(row);
+                    totalItems += item.quantity;
+                    totalPrice += item.price * item.quantity;
+                });
+            }
+
+            totalItemsElem.textContent = totalItems;
+            totalPriceElem.textContent = totalPrice.toFixed(2);
+        }
+
+        function changeQuantity(name, size, change) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.name === name && item.size === size);
+
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change); // Ensure quantity doesn't go below 1
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+            }
+        }
+
+        function removeItem(name, size) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Filter the cart to remove the item
+            cart = cart.filter(item => !(item.name === name && item.size === size));
+            
+            // Update localStorage and refresh the cart display
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            updateCart();
+        }
+
+        function goToCheckout() {
+            window.location.href = 'checkout.html';
+        }
+
+        document.getElementById('clear-cart-btn').addEventListener('click', clearCart);
+        document.getElementById('checkout-btn').addEventListener('click', goToCheckout);
+
+        document.addEventListener('DOMContentLoaded', updateCart);
+    </script>
+</body>
+</html>

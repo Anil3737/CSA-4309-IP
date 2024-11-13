@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Bakery Delights</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #f9f9f9 50%, #ffe5b4 50%);
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideInFromLeft 1s ease-in-out;
+        }
+
+        .header .logo {
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #f8c471;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        .navbar a.active {
+            background: #f8c471;
+            color: #2c3e50;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #f8c471, #f5b041);
+            color: #2c3e50;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #f5b041, #e67e22);
+            transform: scale(1.05);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 40px;
+            text-align: center;
+            background-color: #fff5e6;
+        }
+
+        .products h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #d35400;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-list {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease-in-out forwards;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 5px solid #f8c471;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .product img:hover {
+            transform: scale(1.1);
+        }
+
+        .product h2 {
+            font-size: 28px;
+            margin: 15px 0;
+            color: #d35400;
+        }
+
+        .product p {
+            font-size: 22px;
+            color: #7f8c8d;
+        }
+
+        .product .btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #f8c471, #e67e22);
+            color: #2c3e50;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .close-btn {
+            background: #d35400;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background: #e67e22;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            color: #f8c471;
+            margin: 0 15px;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #f39c12;
+            transform: scale(1.2);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="Register.html" class="logo">Bakery Delights</a>
+        <nav class="navbar">
+            <a href="Register.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="product.html">Products</a>
+            <a href="cart.html" class="btn">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h1>Our Products</h1>
+        <div class="product-list">
+            <div class="product" onclick="showCakeDetails('Lemon Drizzle Cake', 'Delicious lemon-flavored cake with a tangy drizzle topping.', 15, 'cake18.png')">
+                <img src="cake18.png" alt="Lemon Drizzle Cake">
+                <h2>Lemon Drizzle Cake</h2>
+                <p>Price: $15.00</p>
+                <button class="btn" onclick="addToCart('Lemon Drizzle Cake', 15)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Strawberry Shortcake', 'Classic strawberry shortcake with fresh berries and whipped cream.', 23, 'cake15.png')">
+                <img src="cake15.png" alt="Strawberry Shortcake">
+                <h2>Strawberry Shortcake</h2>
+                <p>Price: $23.00</p>
+                <button class="btn" onclick="addToCart('Strawberry Shortcake', 23)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Mango Mousse Cake', 'Light and fluffy mango mousse cake with a hint of citrus.', 28, 'cake16.png')">
+                <img src="cake16.png" alt="Mango Mousse Cake">
+                <h2>Mango Mousse Cake</h2>
+                <p>Price: $28.00</p>
+                <button class="btn" onclick="addToCart('Mango Mousse Cake', 28)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Frosted Fantasy Mini Cake', 'Mini cake with a frosted fantasy theme, perfect for celebrations.', 26, 'https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-frosted-fantasy-mini-cake-223426-m.jpg')">
+                <img src="https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-frosted-fantasy-mini-cake-223426-m.jpg" alt="Frosted Fantasy Mini Cake">
+                <h2>Frosted Fantasy Mini Cake</h2>
+                <p>Price: $26.00</p>
+                <button class="btn" onclick="addToCart('Frosted Fantasy Mini Cake', 26)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Black Forest Cake', 'Rich and decadent Black Forest Cake with layers of chocolate and cherries.', 24, 'cake17.png')">
+                <img src="cake17.png" alt="Black Forest Cake">
+                <h2>Black Forest Cake</h2>
+                <p>Price: $24.00</p>
+                <button class="btn" onclick="addToCart('Black Forest Cake', 24)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Peach Cobbler', 'Homemade Peach Cobbler with a buttery, crumbly topping.', 20, 'cake11.png')">
+                <img src="cake11.png" alt="Peach Cobbler">
+                <h2>Peach Cobbler</h2>
+                <p>Price: $20.00</p>
+                <button class="btn" onclick="addToCart('Peach Cobbler', 20)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Apple Pie', 'Classic Apple Pie with a flaky crust and sweet apple filling.', 18, 'cake19.png')">
+                <img src="cake19.png" alt="Apple Pie">
+                <h2>Apple Pie</h2>
+                <p>Price: $18.00</p>
+                <button class="btn" onclick="addToCart('Apple Pie', 18)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Chocolate Cake', 'Indulgent Chocolate Cake with a rich, moist texture.', 20, 'cake1.png')">
+                <img src="cake1.png" alt="Chocolate Cake">
+                <h2>Chocolate Cake</h2>
+                <p>Price: $20.00</p>
+                <button class="btn" onclick="addToCart('Chocolate Cake', 20)">Add to Cart</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Red Velvet Cake', 'Luxurious Red Velvet Cake with a smooth cream cheese frosting.', 40, 'https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-red-velvet-birthday-special-cake-600-gm--276175-m.jpg')">
+                <img src="https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-red-velvet-birthday-special-cake-600-gm--276175-m.jpg" alt="Red Velvet Cake">
+                <h2>Red Velvet Cake</h2>
+                <p>Price: $40.00</p>
+                <button class="btn" onclick="addToCart('Red Velvet Cake', 40)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="cake-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="cake-name"></h2>
+            <img id="cake-image" src="" alt="Cake Image" style="width: 100%; max-height: 300px; object-fit: cover;">
+            <p id="cake-description"></p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Bakery Delights. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-youtube"></a>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(name, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${name} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+
+        function showCakeDetails(name, description, price, imageUrl) {
+            document.getElementById('cake-name').textContent = name;
+            document.getElementById('cake-description').textContent = description;
+            document.getElementById('cake-image').src = imageUrl;
+            document.getElementById('cake-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('cake-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

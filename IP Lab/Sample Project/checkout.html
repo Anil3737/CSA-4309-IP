@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Bakery Delights</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header .logo {
+            font-size: 28px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: #555;
+        }
+
+        .checkout {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .checkout h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .checkout .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .checkout .cart-table th, .checkout .cart-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .checkout .cart-table th {
+            background-color: #f8c471;
+            color: #333;
+        }
+
+        .checkout .cart-table td {
+            background-color: #fff;
+        }
+
+        .checkout .cart-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .checkout .cart-total {
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .checkout-form {
+            margin-top: 20px;
+        }
+
+        .checkout-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .checkout-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .checkout-form button {
+            background: #f8c471;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .checkout-form button:hover {
+            background: #f5b041;
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="Register.html" class="logo">Bakery Delights</a>
+        <nav class="navbar">
+            <a href="Register.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="product.html">Products</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="checkout">
+        <h1>Checkout</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="checkout-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <div class="cart-total">
+            Total: $<span id="checkout-total">0.00</span>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Shipping Information</h2>
+            <form id="checkout-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" name="zip" required>
+
+                <h2>Payment Information</h2>
+                <label for="card-name">Cardholder Name:</label>
+                <input type="text" id="card-name" name="card-name" required>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" pattern="\d{16}" maxlength="16" required>
+                <label for="expiry-date">Expiry Date (MM/YY):</label>
+                <input type="text" id="expiry-date" name="expiry-date" pattern="\d{2}/\d{2}" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" pattern="\d{3}" maxlength="3" required>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Bakery Delights. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCheckout();
+        });
+
+        function updateCheckout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            const checkoutTotalElement = document.getElementById('checkout-total');
+            let total = 0;
+
+            checkoutItemsContainer.innerHTML = '';
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                checkoutItemsContainer.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${itemTotal.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            checkoutTotalElement.textContent = total.toFixed(2);
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Order placed successfully!');
+            localStorage.removeItem('cart'); // Clear cart after order
+            window.location.href = 'Register.html'; // Redirect to home page or order confirmation page
+        });
+    </script>
+</body>
+</html>

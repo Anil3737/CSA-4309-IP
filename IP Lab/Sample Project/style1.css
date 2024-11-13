@@ -1,0 +1,78 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #ff6b6b;
+    padding: 1em 2em;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+.btn {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 0.5em 1.2em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e55656;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 2em;
+    background-color: #fff;
+}
+
+.product-card {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 1em 0;
+}
+
+.footer {
+    background-color: #ff6b6b;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2em;
+}

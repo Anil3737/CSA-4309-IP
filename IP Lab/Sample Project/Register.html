@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Cake Shop | Bakery</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            font-size: 28px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: #f8c471;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #f5b041;
+        }
+
+        .btn-primary {
+            background: #ff6f61;
+            color: #fff;
+        }
+
+        .hero {
+            background-color: black;
+            color: pink;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .hero .btn-primary {
+            font-size: 20px;
+        }
+
+        .featured-cakes {
+            padding: 40px 20px;
+            background: #fff;
+            text-align: center;
+            border-top: 4px solid #f8c471;
+            border-bottom: 4px solid #f8c471;
+        }
+
+        .featured-cakes h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .cake-carousel {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            margin: auto;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .cake-slide {
+            display: none;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .cake-slide img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .cake-slide h3 {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        .cake-slide p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .btn-nav {
+            background: #f8c471;
+            color: #333;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background: #f5b041;
+        }
+
+        .btn-nav.prev {
+            left: 10px;
+        }
+
+        .btn-nav.next {
+            right: 10px;
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="Register.html" class="logo">Bakery</a>
+        <nav class="navbar">
+            <a href="Register.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html" class="btn">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Bakery Delights</h1>
+        <p>Discover our range of scrumptious cakes and pastries. Baked fresh every day for your pleasure.</p>
+        <a href="shop.html" class="btn btn-primary">Explore Our Collection</a>
+    </section>
+
+    <section class="featured-cakes">
+        <h2>Featured Cakes</h2>
+        <div class="cake-carousel">
+            <!-- Slide 1 -->
+            <div class="cake-slide">
+                <img src="cake1.png" alt="Chocolate Cake">
+                <h3>Chocolate Delight</h3>
+                <p>A rich and decadent chocolate cake made with the finest cocoa, topped with a velvety chocolate ganache.</p>
+                <p>$15.99</p>
+                <button class="btn btn-outline add-to-cart" data-id="1" data-name="Chocolate Delight" data-price="15.99">Add to Cart</button>
+            </div>
+            <!-- Slide 2 -->
+            <div class="cake-slide">
+                <img src="cake2.png" alt="Vanilla Cake">
+                <h3>Vanilla Dream</h3>
+                <p>A classic vanilla sponge cake with light and creamy vanilla buttercream frosting.</p>
+                <p>$12.99</p>
+                <button class="btn btn-outline add-to-cart" data-id="2" data-name="Vanilla Dream" data-price="12.99">Add to Cart</button>
+            </div>
+            <!-- Slide 3 -->
+            <div class="cake-slide">
+                <img src="cake3.png" alt="Red Velvet Cake">
+                <h3>Red Velvet Bliss</h3>
+                <p>Elegant red velvet cake with a luscious cream cheese frosting, perfect for any occasion.</p>
+                <p>$18.99</p>
+                <button class="btn btn-outline add-to-cart" data-id="3" data-name="Red Velvet Bliss" data-price="18.99">Add to Cart</button>
+            </div>
+            <!-- Slide 4 -->
+            <div class="cake-slide">
+                <img src="cake4.png" alt="Lemon Drizzle Cake">
+                <h3>Lemon Drizzle</h3>
+                <p>A tangy lemon sponge cake topped with a sweet lemon glaze, ideal for a refreshing treat.</p>
+                <p>$14.49</p>
+                <button class="btn btn-outline add-to-cart" data-id="4" data-name="Lemon Drizzle" data-price="14.49">Add to Cart</button>
+            </div>
+            <!-- Slide 5 -->
+            <div class="cake-slide">
+                <img src="cake5.png" alt="Strawberry Shortcake">
+                <h3>Strawberry Shortcake</h3>
+                <p>A delightful shortcake layered with fresh strawberries and whipped cream for a sweet experience.</p>
+                <p>$16.49</p>
+                <button class="btn btn-outline add-to-cart" data-id="5" data-name="Strawberry Shortcake" data-price="16.49">Add to Cart</button>
+            </div>
+        </div>
+        <button class="btn btn-nav prev">&lt;</button>
+        <button class="btn btn-nav next">&gt;</button>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Bakery Delights. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update cart count from localStorage
+            updateCartCount();
+
+            // Handle Add to Cart buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const price = parseFloat(button.getAttribute('data-price'));
+
+                    addToCart({ id, name, price });
+                });
+            });
+
+            // Initialize carousel
+            const slides = document.querySelectorAll('.cake-slide');
+            const prevButton = document.querySelector('.btn-nav.prev');
+            const nextButton = document.querySelector('.btn-nav.next');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? 'block' : 'none';
+                });
+            }
+
+            showSlide(currentSlide);
+
+            prevButton.addEventListener('click', () => {
+                currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+                showSlide(currentSlide);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+                showSlide(currentSlide);
+            });
+        });
+
+        function addToCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
+
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                item.quantity = 1;
+                cart.push(item);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Bakery Delights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #e65c50;
+        }
+
+        .message {
+            text-align: center;
+            color: #d44;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form id="register-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Register</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Extract form data
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate successful registration
+            // In a real application, you would send this data to a server here
+
+            // For this example, we'll just display a message and redirect
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = 'Registration successful! Redirecting to homepage...';
+            messageElement.style.color = '#4caf50';
+
+            // Redirect after a delay
+            setTimeout(() => {
+                window.location.href = 'Register.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

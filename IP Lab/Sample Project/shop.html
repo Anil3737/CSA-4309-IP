@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Bakery Delights</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #f9f9f9 50%, #ffe5b4 50%);
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideInFromLeft 1s ease-in-out;
+        }
+
+        .header .logo {
+            font-size: 36px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #f8c471;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .navbar {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a.active {
+            background: #f8c471;
+            color: #2c3e50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(135deg, #f8c471, #f5b041);
+            color: #2c3e50;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #f5b041, #e67e22);
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 40px;
+            text-align: center;
+            background-color: #fff5e6;
+            border-top: 5px solid #f8c471;
+        }
+
+        .products h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            color: #d35400;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .product-list {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Cards */
+        .product {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease-in-out forwards;
+            overflow: hidden;
+            border: 1px solid #f8c471;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 5px solid #f8c471;
+            border-radius: 10px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .product img:hover {
+            transform: scale(1.1);
+            filter: brightness(90%);
+        }
+
+        .product h2 {
+            font-size: 30px;
+            margin: 15px 0;
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        .product p {
+            font-size: 24px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .product .btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #f8c471, #e67e22);
+            color: #2c3e50;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 36px;
+            color: #d35400;
+        }
+
+        .close-btn {
+            background: #d35400;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #e67e22;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .footer .social-icons {
+            margin-top: 20px;
+        }
+
+        .footer .social-icons a {
+            color: #f8c471;
+            margin: 0 20px;
+            font-size: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #f39c12;
+            transform: scale(1.3);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="Register.html" class="logo">Bakery Delights</a>
+        <nav class="navbar">
+            <a href="Register.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <main class="products">
+        <h1>Our Cakes</h1>
+        <div class="product-list">
+            <!-- Example Product Item -->
+            <div class="product" onclick="showCakeDetails('Lemon Drizzle Cake', 'Delicious lemon-flavored cake with a tangy drizzle topping.', 150, 'cake18.png')">
+                <img src="cake18.png" alt="Lemon Drizzle Cake">
+                <h2>Lemon Drizzle Cake</h2>
+                <p>Price: $150.00</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Strawberry Shortcake', 'Classic strawberry shortcake with fresh berries and whipped cream.', 200, 'cake15.png')">
+                <img src="cake15.png" alt="Strawberry Shortcake">
+                <h2>Strawberry Shortcake</h2>
+                <p>Price: $200.00</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Mango Mousse Cake', 'Light and fluffy mango mousse cake with a hint of citrus.', 204, 'cake16.png')">
+                <img src="cake16.png" alt="Mango Mousse Cake">
+                <h2>Mango Mousse Cake</h2>
+                <p>Price: $204.00</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Frosted Fantasy Mini Cake', 'Mini cake with a frosted fantasy theme, perfect for celebrations.', 122, 'https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-frosted-fantasy-mini-cake-223426-m.jpg')">
+                <img src="https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-frosted-fantasy-mini-cake-223426-m.jpg" alt="Frosted Fantasy Mini Cake">
+                <h2>Frosted Fantasy Mini Cake</h2>
+                <p>Price: $122.00</p>
+                <button class="btn" >View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Black Forest Cake', 'Rich and decadent Black Forest Cake with layers of chocolate and cherries.', 150, 'cake17.png')">
+                <img src="cake17.png" alt="Black Forest Cake">
+                <h2>Black Forest Cake</h2>
+                <p>Price: $150.00</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Peach Cobbler', 'Homemade Peach Cobbler with a buttery, crumbly topping.', 190, 'cake11.png')">
+                <img src="cake11.png" alt="Peach Cobbler">
+                <h2>Peach Cobbler</h2>
+                <p>Price: $190.00</p>
+                <button class="btn" >View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Apple Pie', 'Classic Apple Pie with a flaky crust and sweet apple filling.', 148, 'cake19.png')">
+                <img src="cake19.png" alt="Apple Pie">
+                <h2>Apple Pie</h2>
+                <p>Price: $148.00</p>
+                <button class="btn" >View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Chocolate Cake', 'Indulgent Chocolate Cake with a rich, moist texture.', 219, 'cake1.png')">
+                <img src="cake1.png" alt="Chocolate Cake">
+                <h2>Chocolate Cake</h2>
+                <p>Price: $219.00</p>
+                <button class="btn" >View Details</button>
+            </div>
+            <div class="product" onclick="showCakeDetails('Red Velvet Cake', 'Luxurious Red Velvet Cake with a smooth cream cheese frosting.', 410, 'https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-red-velvet-birthday-special-cake-600-gm--276175-m.jpg')">
+                <img src="https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-red-velvet-birthday-special-cake-600-gm--276175-m.jpg" alt="Red Velvet Cake">
+                <h2>Red Velvet Cake</h2>
+                <p>Price: $410.00</p>
+                <button class="btn">View Details</button>
+            </div>
+            <!-- Add more product items here -->
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="cake-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">Close</button>
+            <h2 id="cake-name"></h2>
+            <img id="cake-image" src="" alt="Cake Image" style="width: 100%; max-height: 300px; object-fit: cover;">
+            <p id="cake-description"></p>
+            <p id="cake-price"></p>
+            <select id="cake-size" onchange="updateprice()">
+                <option value="1kg">1kg</option>
+                <option value="2kg">2kg</option>
+            </select>
+            <button class="btn" onclick="addToCartFromModal()">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Bakery Delights. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" class="fab fa-facebook-f"> </a>
+            <a href="#" class="fab fa-twitter"> </a>
+            <a href="#" class="fab fa-instagram"> </a>
+        </div>
+    </footer>
+
+    <script>
+       let currentProduct = null;
+
+// Show the product details modal
+function showCakeDetails(name, description, price, imageUrl) {
+    currentProduct = { name, basePrice: price }; // Store base price separately
+    document.getElementById('cake-name').textContent = name;
+    document.getElementById('cake-description').textContent = description;
+    document.getElementById('cake-price').textContent = `Price: $${price.toFixed(2)}`;
+    document.getElementById('cake-image').src = imageUrl;
+    document.getElementById('cake-modal').style.display = 'flex';
+
+    // Reset the size dropdown to default and update the price accordingly
+    document.getElementById('cake-size').value = '1kg';
+    updatePrice(); // Update price for the default size (1kg)
+}
+
+// Close the modal
+function closeModal() {
+    document.getElementById('cake-modal').style.display = 'none';
+}
+
+// Add to cart from the modal
+function addToCartFromModal() {
+    if (currentProduct) {
+        const size = document.getElementById('cake-size').value;
+        const price = calculatePrice(size);
+        addToCart(currentProduct.name, price, size);
+        closeModal();
+    }
+}
+
+// Calculate the price based on size
+function calculatePrice(size) {
+    let price = currentProduct.basePrice;
+    if (size === '2kg') {
+        price += 100; // Example: increase price by $50 for 2kg
+    }
+    return price;
+}
+
+// Update the displayed price when the size changes
+function updatePrice() {
+    const size = document.getElementById('cake-size').value;
+    const price = calculatePrice(size);
+    document.getElementById('cake-price').textContent = `Price: $${price.toFixed(2)}`;
+}
+
+// Listen for size changes to update the price dynamically
+document.getElementById('cake-size').addEventListener('change', updatePrice);
+
+// Add to cart function (same as before)
+function addToCart(name, price, size) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItem = cart.find(item => item.name === name && item.size === size);
+
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ name, price, size, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${name} (${size}) added to cart!`);
+}
+
+// Update cart count (same as before)
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
+    document.getElementById('cart-count').textContent = totalCount;
+}
+
+// Initial cart count update
+updateCartCount();
+
+</script>
+</body>
+</html>

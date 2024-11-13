@@ -1,0 +1,8 @@
+BODY{background-color:green;font-family:sans-serif} 
+CAPTION{font-size:large;font-weight:bold} 
+H1{font-family:helvetica;color:blue} 
+H2{font-family:arial;color:red} 
+a:visited {color :pink}  
+a:link {color : green}   
+a:hover{color : blue}  // mouse over color change
+a:active{color : black}   
